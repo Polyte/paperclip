@@ -82,7 +82,7 @@ export function redactTranscriptEntryPaths(entry: TranscriptEntry, opts?: HomePa
       return {
         ...entry,
         model: redactHomePathUserSegments(entry.model, opts),
-        sessionId: redactHomePathUserSegments(entry.sessionId, opts),
+        sessionId: redactHomePathUserSegments(entry.sessionId, { enabled: true }),
       };
     case "result":
       return {

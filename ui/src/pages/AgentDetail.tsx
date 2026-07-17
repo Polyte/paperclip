@@ -3584,13 +3584,13 @@ function RunDetail({ run: initialRun, agentRouteId, adapterType, adapterConfig }
                 {run.sessionIdBefore && (
                   <div className="flex items-center gap-2">
                     <span className="text-muted-foreground w-12">{sessionChanged ? "Before" : "ID"}</span>
-                    <CopyText text={run.sessionIdBefore} className="font-mono" />
+                    <CopyText text={redactHomePathUserSegments(run.sessionIdBefore, { enabled: true })} className="font-mono" />
                   </div>
                 )}
                 {sessionChanged && run.sessionIdAfter && (
                   <div className="flex items-center gap-2">
                     <span className="text-muted-foreground w-12">After</span>
-                    <CopyText text={run.sessionIdAfter} className="font-mono" />
+                    <CopyText text={redactHomePathUserSegments(run.sessionIdAfter, { enabled: true })} className="font-mono" />
                   </div>
                 )}
                 {touchedIssueIds.length > 0 && (
