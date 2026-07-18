@@ -516,8 +516,6 @@ function summarizeIssueRelationForActivity(relation: {
   };
 }
 
-const defaultCompanySearchRateLimiter = createCompanySearchRateLimiter();
-
 function companySearchRateLimitActor(req: Request, companyId: string) {
   if (req.actor.type === "agent") {
     return {
@@ -864,7 +862,7 @@ export function issueRoutes(
     searchSvc ??= companySearchService(db);
     return searchSvc;
   };
-  const searchRateLimiter = opts.searchRateLimiter ?? defaultCompanySearchRateLimiter;
+  const searchRateLimiter = opts.searchRateLimiter ?? createCompanySearchRateLimiter(db);
   const instanceSettings = instanceSettingsService(db);
   const agentsSvc = agentService(db);
   const projectsSvc = projectService(db);
@@ -1831,7 +1829,7 @@ export function issueRoutes(
     const companyId = req.params.companyId as string;
     assertCompanyAccess(req, companyId);
     const query = companySearchQuerySchema.parse(req.query);
-    const rateLimit = searchRateLimiter.consume(companySearchRateLimitActor(req, companyId));
+    const rateLimit = await searchRateLimiter.consume(companySearchRateLimitActor(req, companyId));
     res.setHeader("X-RateLimit-Limit", String(rateLimit.limit));
     res.setHeader("X-RateLimit-Remaining", String(rateLimit.remaining));
     if (!rateLimit.allowed) {

@@ -37,10 +37,19 @@ export function deriveAuthCookiePrefix(instanceId = resolvePaperclipInstanceId()
   return `paperclip-${scopedInstanceId}`;
 }
 
-export function buildBetterAuthAdvancedOptions(input: { disableSecureCookies: boolean }) {
+export function buildBetterAuthAdvancedOptions(input: {
+  disableSecureCookies: boolean;
+  cookieDomain?: string;
+}) {
+  const defaultCookieAttributes = input.cookieDomain
+    ? { domain: input.cookieDomain }
+    : undefined;
+
   return {
     cookiePrefix: deriveAuthCookiePrefix(),
     ...(input.disableSecureCookies ? { useSecureCookies: false } : {}),
+    ...(defaultCookieAttributes ? { defaultCookieAttributes } : {}),
+    crossSubDomainCookies: { enabled: false },
   };
 }
 
@@ -148,7 +157,10 @@ export function createBetterAuthInstance(db: Db, config: Config, trustedOrigins:
       requireEmailVerification: false,
       disableSignUp: config.authDisableSignUp,
     },
-    advanced: buildBetterAuthAdvancedOptions({ disableSecureCookies }),
+    advanced: buildBetterAuthAdvancedOptions({
+      disableSecureCookies,
+      cookieDomain: config.authCookieDomain,
+    }),
   };
 
   if (!baseUrl) {

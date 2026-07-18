@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <radialGradient id="greenGlow" cx="0.5" cy="0.45" r="0.6">
+      <stop offset="0%" stop-color="#00ff88" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0b1c30" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="btnGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#00cc6a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1920" fill="#0b1c30"/>
+  <rect width="1080" height="1920" fill="url(#greenGlow)"/>
+
+  <!-- Progress dots -->
+  <g transform="translate(500, 60)">
+    <circle cx="0" cy="0" r="6" fill="#00ff88" opacity="0.3"/>
+    <circle cx="30" cy="0" r="6" fill="#00ff88" opacity="0.3"/>
+    <circle cx="60" cy="0" r="6" fill="#00ff88"/>
+    <circle cx="90" cy="0" r="6" fill="#64748b"/>
+    <circle cx="120" cy="0" r="6" fill="#64748b"/>
+  </g>
+
+  <!-- Label -->
+  <text x="540" y="200" font-family="'IBM Plex Sans', sans-serif" font-weight="600" font-size="15" fill="#00ff88" text-anchor="middle" letter-spacing="3">GET STARTED</text>
+
+  <!-- Main headline -->
+  <text x="540" y="340" font-family="'Space Grotesk', 'Josefin Sans', sans-serif" font-weight="800" font-size="56" fill="#ffffff" text-anchor="middle" letter-spacing="-1.5">
+    <tspan x="540" dy="0">Ready to try</tspan>
+  </text>
+  <text x="540" y="420" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="56" fill="#00ff88" text-anchor="middle" letter-spacing="-1.5">
+    <tspan x="540" dy="0">seeID?</tspan>
+  </text>
+
+  <rect x="440" y="450" width="200" height="4" rx="2" fill="#00ff88" opacity="0.5"/>
+
+  <!-- Steps -->
+  <g transform="translate(190, 580)">
+
+    <!-- Step 1 -->
+    <rect x="0" y="0" width="700" height="90" rx="16" fill="#ffffff" opacity="0.04"/>
+    <text x="50" y="42" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="32" fill="#ff3e00">01</text>
+    <text x="100" y="38" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#ffffff">Create your free account</text>
+    <text x="100" y="66" font-family="'IBM Plex Sans', sans-serif" font-size="15" fill="#64748b">No credit card, no commitment — just sign up at seeid.co.za</text>
+
+    <!-- Arrow -->
+    <text x="340" y="125" font-family="Arial, sans-serif" font-size="24" fill="#00ff88" opacity="0.4" text-anchor="middle">↓</text>
+
+    <!-- Step 2 -->
+    <rect x="0" y="152" width="700" height="90" rx="16" fill="#ffffff" opacity="0.04"/>
+    <text x="50" y="194" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="32" fill="#ff3e00">02</text>
+    <text x="100" y="190" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#ffffff">Run your first verification</text>
+    <text x="100" y="218" font-family="'IBM Plex Sans', sans-serif" font-size="15" fill="#64748b">Enter an SA ID number — get DHA results in under 3 seconds</text>
+
+    <!-- Arrow -->
+    <text x="340" y="280" font-family="Arial, sans-serif" font-size="24" fill="#00ff88" opacity="0.4" text-anchor="middle">↓</text>
+
+    <!-- Step 3 -->
+    <rect x="0" y="300" width="700" height="90" rx="16" fill="#ffffff" opacity="0.04"/>
+    <text x="50" y="342" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="32" fill="#ff3e00">03</text>
+    <text x="100" y="338" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" fill="#ffffff">Get audit-ready reports</text>
+    <text x="100" y="366" font-family="'IBM Plex Sans', sans-serif" font-size="15" fill="#64748b">Every check logged with consent — ready for FICA compliance</text>
+  </g>
+
+  <!-- CTA Button -->
+  <g transform="translate(290, 900)">
+    <rect x="0" y="0" width="500" height="72" rx="14" fill="url(#btnGrad)"/>
+    <text x="250" y="44" font-family="'Space Grotesk', 'Josefin Sans', sans-serif" font-weight="700" font-size="22" fill="#0b1c30" text-anchor="middle" letter-spacing="0.5">Create free account →</text>
+  </g>
+
+  <!-- Link text -->
+  <text x="540" y="1040" font-family="'IBM Plex Sans', sans-serif" font-weight="600" font-size="20" fill="#00ff88" text-anchor="middle">seeid.co.za/signup</text>
+
+  <!-- Trust bar -->
+  <g transform="translate(140, 1150)">
+    <rect x="0" y="0" width="800" height="60" rx="12" fill="#ffffff" opacity="0.03"/>
+    <text x="200" y="38" font-family="'IBM Plex Sans', sans-serif" font-weight="500" font-size="13" fill="#64748b" text-anchor="middle">POPIA compliant</text>
+    <line x1="320" y1="15" x2="320" y2="45" stroke="#ffffff" stroke-opacity="0.06"/>
+    <text x="480" y="38" font-family="'IBM Plex Sans', sans-serif" font-weight="500" font-size="13" fill="#64748b" text-anchor="middle">Bank-grade security</text>
+    <line x1="580" y1="15" x2="580" y2="45" stroke="#ffffff" stroke-opacity="0.06"/>
+    <text x="690" y="38" font-family="'IBM Plex Sans', sans-serif" font-weight="500" font-size="13" fill="#64748b" text-anchor="middle">No setup fees</text>
+  </g>
+
+  <text x="540" y="1880" font-family="'IBM Plex Sans', sans-serif" font-weight="500" font-size="14" fill="#64748b" text-anchor="middle">seeID · seeid.co.za</text>
+</svg>

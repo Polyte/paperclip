@@ -78,6 +78,10 @@ import {
   mergeHeartbeatRunResultJson,
 } from "./heartbeat-run-summary.js";
 import {
+  createModelRateLimiter,
+  type ModelRateLimiter,
+} from "./model-rate-limit.js";
+import {
   buildHeartbeatRunStopMetadata,
   mergeHeartbeatRunStopMetadata,
   normalizeMaxTurnStopReason,
@@ -2248,7 +2252,11 @@ async function buildPaperclipWakePayload(input: {
 }
 
 function runTaskKey(run: typeof heartbeatRuns.$inferSelect) {
-  return deriveTaskKey(run.contextSnapshot as Record<string, unknown> | null, null);
+  // Must mirror the wake-side key derivation (deriveTaskKeyWithHeartbeatFallback):
+  // a no-task timer wake computes its task key as "__heartbeat__", while raw runs
+  // store no explicit task/issue id. Using deriveTaskKey here returns null, which
+  // defeats same-scope coalescing and lets every timer tick spawn a new run.
+  return deriveTaskKeyWithHeartbeatFallback(run.contextSnapshot as Record<string, unknown> | null, null);
 }
 
 function isSameTaskScope(left: string | null, right: string | null) {
@@ -2533,6 +2541,7 @@ export function heartbeatService(db: Db, options: HeartbeatServiceOptions = {}) 
   const budgets = budgetService(db, budgetHooks);
   const recovery = recoveryService(db, { enqueueWakeup });
   const productivityReviews = productivityReviewService(db, { enqueueWakeup });
+  const modelRateLimiter = createModelRateLimiter(db);
   let unsafeTextProjectionPromise: Promise<boolean> | null = null;
 
   async function releaseEnvironmentLeasesForRun(input: {
@@ -6030,6 +6039,28 @@ export function heartbeatService(db: Db, options: HeartbeatServiceOptions = {}) 
     return Number(count ?? 0);
   }
 
+  /**
+   * Returns true if the agent currently has a *live* child process in the
+   * in-memory executor (the `runningProcesses` map or `activeRunExecutions`
+   * set) for any of its running runs.
+   *
+   * Used by the per-agent concurrency guard: a sessioned local adapter (e.g.
+   * hermes_local) spawns one long-lived child per run. While that child is
+   * alive we must not start another one for the same agent, even if the DB
+   * shows an available slot — the running run is the in-flight wake that will
+   * re-trigger scheduling on completion (see ZEU-34 / ZEU-66).
+   */
+  async function hasLiveChildForOtherRun(agentId: string): Promise<boolean> {
+    const runs = await db
+      .select({ id: heartbeatRuns.id })
+      .from(heartbeatRuns)
+      .where(and(eq(heartbeatRuns.agentId, agentId), eq(heartbeatRuns.status, "running")));
+    for (const { id } of runs) {
+      if (runningProcesses.has(id) || activeRunExecutions.has(id)) return true;
+    }
+    return false;
+  }
+
   async function claimQueuedRun(run: typeof heartbeatRuns.$inferSelect) {
     if (run.status !== "queued") return run;
     const agent = await getAgent(run.agentId);
@@ -6951,6 +6982,31 @@ export function heartbeatService(db: Db, options: HeartbeatServiceOptions = {}) 
       const runningCount = await countRunningRunsForAgent(agentId);
       const availableSlots = Math.max(0, policy.maxConcurrentRuns - runningCount);
       if (availableSlots <= 0) return [];
+
+      // Concurrency guard for sessioned local adapters (hermes_local, claude_local,
+      // codex_local, etc.). These adapters spawn a single long-lived child process
+      // per run (e.g. `hermes chat`). The upstream adapter package does not itself
+      // enforce "one child per agent", so if a second heartbeat wake is processed
+      // before the first run's child has been reaped, the server would start a
+      // second child for the same agent. That duplicates work and wastes CPU
+      // (see ZEU-34 / ZEU-66 "duplicate heartbeat spawn").
+      //
+      // Because the in-flight run that triggered this wake is still `running` in the
+      // DB, we cannot rely on the running-count alone. Instead we check for a live
+      // child process that belongs to a *different* run than the one we are about to
+      // claim. If such a child exists, another wake is already executing — skip
+      // claiming a new slot and let the running wake finish (it will call
+      // startNextQueuedRunForAgent again on completion).
+      if (isTrackedLocalChildProcessAdapter(agent.adapterType) && runningCount > 0) {
+        const hasLiveForeignChild = await hasLiveChildForOtherRun(agentId);
+        if (hasLiveForeignChild) {
+          logger.debug(
+            { agentId, adapterType: agent.adapterType },
+            "skipping queued-run claim: a live child process already exists for this agent (concurrency guard)"
+          );
+          return [];
+        }
+      }
 
       const queuedRuns = await db
         .select()
@@ -8028,6 +8084,27 @@ export function heartbeatService(db: Db, options: HeartbeatServiceOptions = {}) 
         // finalize=failed from the catch path below.
         adapterFinalizeOutcome = status;
       };
+
+      // Rate-limit agent execution by model to prevent model rate-limit
+      // deadlocks (e.g., 11+ agents hammering DeepSeek free tier).
+      const rateLimitCheck = await modelRateLimiter.consume(
+        agent.adapterType,
+        modelProfileApplication.applied,
+      );
+      if (!rateLimitCheck.allowed) {
+        throw Object.assign(
+          new Error(
+            `Model rate limit exceeded for ${agent.adapterType}` +
+            (modelProfileApplication.applied ? `/${modelProfileApplication.applied}` : "") +
+            `. Retry after ${rateLimitCheck.retryAfterSeconds}s.`,
+          ),
+          {
+            name: "ModelRateLimitExceededError",
+            errorCode: "model_rate_limited",
+            retryAfterSeconds: rateLimitCheck.retryAfterSeconds,
+          },
+        );
+      }
 
       let adapterResult: Awaited<ReturnType<typeof adapter.execute>>;
       try {

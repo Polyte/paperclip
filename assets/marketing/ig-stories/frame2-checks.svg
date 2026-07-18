@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg2s" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b1c30"/>
+      <stop offset="100%" stop-color="#0a1a32"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1920" fill="url(#bg2s)"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1080" height="4" fill="#ff3e00" opacity="0.8"/>
+
+  <!-- Progress dots -->
+  <g transform="translate(500, 60)">
+    <circle cx="0" cy="0" r="6" fill="#ff3e00"/>
+    <circle cx="30" cy="0" r="6" fill="#ff3e00"/>
+    <circle cx="60" cy="0" r="6" fill="#64748b"/>
+    <circle cx="90" cy="0" r="6" fill="#64748b"/>
+    <circle cx="120" cy="0" r="6" fill="#64748b"/>
+  </g>
+
+  <!-- Label -->
+  <text x="540" y="120" font-family="'IBM Plex Sans', sans-serif" font-weight="600" font-size="15" fill="#ff3e00" text-anchor="middle" letter-spacing="3">WHAT YOU GET</text>
+
+  <!-- Headline -->
+  <text x="540" y="200" font-family="'Space Grotesk', 'Josefin Sans', sans-serif" font-weight="800" font-size="46" fill="#ffffff" text-anchor="middle" letter-spacing="-1">
+    <tspan x="540" dy="0">5 verification checks</tspan>
+  </text>
+  <text x="540" y="260" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="46" fill="#00ff88" text-anchor="middle" letter-spacing="-1">
+    <tspan x="540" dy="0">in one platform.</tspan>
+  </text>
+
+  <!-- Accent line -->
+  <rect x="440" y="285" width="200" height="3" rx="1.5" fill="#00ff88" opacity="0.5"/>
+
+  <!-- Checklist items -->
+  <g transform="translate(140, 380)">
+    <!-- Item 1: DHA -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="800" height="100" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <!-- Check circle -->
+      <circle cx="50" cy="50" r="24" fill="#00ff88" opacity="0.15"/>
+      <text x="50" y="60" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">✓</text>
+      <text x="100" y="44" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#ffffff">DHA ID Verification</text>
+      <text x="100" y="72" font-family="'IBM Plex Sans', sans-serif" font-weight="400" font-size="15" fill="#64748b">Match names, ID numbers, and photos against Home Affairs NPR</text>
+    </g>
+
+    <!-- Item 2: Liveness -->
+    <g transform="translate(0, 140)">
+      <rect x="0" y="0" width="800" height="100" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <circle cx="50" cy="50" r="24" fill="#00ff88" opacity="0.15"/>
+      <text x="50" y="60" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">✓</text>
+      <text x="100" y="44" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#ffffff">Biometric Liveness</text>
+      <text x="100" y="72" font-family="'IBM Plex Sans', sans-serif" font-weight="400" font-size="15" fill="#64748b">Active &amp; passive checks — detect spoofing and deepfakes</text>
+    </g>
+
+    <!-- Item 3: PEP -->
+    <g transform="translate(0, 280)">
+      <rect x="0" y="0" width="800" height="100" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <circle cx="50" cy="50" r="24" fill="#00ff88" opacity="0.15"/>
+      <text x="50" y="60" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">✓</text>
+      <text x="100" y="44" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#ffffff">PEP &amp; Sanctions Screening</text>
+      <text x="100" y="72" font-family="'IBM Plex Sans', sans-serif" font-weight="400" font-size="15" fill="#64748b">Politically-exposed persons, sanctions lists, watchlists</text>
+    </g>
+
+    <!-- Item 4: Documents -->
+    <g transform="translate(0, 420)">
+      <rect x="0" y="0" width="800" height="100" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <circle cx="50" cy="50" r="24" fill="#00ff88" opacity="0.15"/>
+      <text x="50" y="60" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">✓</text>
+      <text x="100" y="44" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#ffffff">Document Authenticity</text>
+      <text x="100" y="72" font-family="'IBM Plex Sans', sans-serif" font-weight="400" font-size="15" fill="#64748b">ID books, smart cards, passports — automated scoring</text>
+    </g>
+
+    <!-- Item 5: Criminal -->
+    <g transform="translate(0, 560)">
+      <rect x="0" y="0" width="800" height="100" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <circle cx="50" cy="50" r="24" fill="#00ff88" opacity="0.15"/>
+      <text x="50" y="60" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">✓</text>
+      <text x="100" y="44" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#ffffff">Criminal &amp; Credit Screening</text>
+      <text x="100" y="72" font-family="'IBM Plex Sans', sans-serif" font-weight="400" font-size="15" fill="#64748b">SAPS criminal records, credit bureau checks, fraud signals</text>
+    </g>
+  </g>
+
+  <!-- CTA hint -->
+  <text x="540" y="1240" font-family="'IBM Plex Sans', sans-serif" font-weight="600" font-size="18" fill="#64748b" text-anchor="middle">All 5 checks — from R112/month →</text>
+
+  <!-- Link bar -->
+  <g transform="translate(140, 1380)">
+    <rect x="0" y="0" width="800" height="60" rx="30" fill="#ff3e00" opacity="0.2"/>
+    <text x="400" y="38" font-family="'IBM Plex Sans', sans-serif" font-weight="600" font-size="18" fill="#ff3e00" text-anchor="middle">seeid.co.za/signup</text>
+  </g>
+
+  <text x="540" y="1880" font-family="'IBM Plex Sans', sans-serif" font-weight="500" font-size="14" fill="#64748b" text-anchor="middle">seeID · Verify South African identities in seconds</text>
+</svg>

@@ -39,6 +39,7 @@ import {
   isUuidSecretRef,
   readConfigValueAtPath,
 } from "./json-schema-secret-refs.js";
+import { createDbRateLimiter } from "./db-rate-limiter.js";
 
 export const PLUGIN_SECRET_REFS_DISABLED_MESSAGE =
   "Plugin secret references are disabled until company-scoped plugin config lands";
@@ -139,6 +140,11 @@ export interface PluginSecretsHandlerOptions {
    * that reach the plugin worker.
    */
   pluginId: string;
+  /**
+   * Optional pre-built rate limiter. When provided, the handler uses this
+   * instead of creating a DB-backed one. Useful for tests.
+   */
+  rateLimiter?: { consume(key: string, now?: Date): Promise<{ allowed: boolean }> };
 }
 
 /**
@@ -179,30 +185,16 @@ export interface PluginSecretsService {
  * @param options - Database connection and plugin identity
  * @returns A `PluginSecretsService` suitable for `HostServices.secrets`
  */
-/** Simple sliding-window rate limiter for secret resolution attempts. */
-function createRateLimiter(maxAttempts: number, windowMs: number) {
-  const attempts = new Map<string, number[]>();
-
-  return {
-    check(key: string): boolean {
-      const now = Date.now();
-      const windowStart = now - windowMs;
-      const existing = (attempts.get(key) ?? []).filter((ts) => ts > windowStart);
-      if (existing.length >= maxAttempts) return false;
-      existing.push(now);
-      attempts.set(key, existing);
-      return true;
-    },
-  };
-}
-
 export function createPluginSecretsHandler(
   options: PluginSecretsHandlerOptions,
 ): PluginSecretsService {
-  const { pluginId } = options;
+  const { db, pluginId } = options;
 
   // Rate limit: max 30 resolution attempts per plugin per minute
-  const rateLimiter = createRateLimiter(30, 60_000);
+  const rateLimiter = options.rateLimiter ?? createDbRateLimiter(db, {
+    maxRequests: 30,
+    windowMs: 60_000,
+  });
 
   return {
     async resolve(params: PluginSecretsResolveParams): Promise<string> {
@@ -211,7 +203,8 @@ export function createPluginSecretsHandler(
       // ---------------------------------------------------------------
       // 0. Rate limiting — prevent brute-force UUID enumeration
       // ---------------------------------------------------------------
-      if (!rateLimiter.check(pluginId)) {
+      const check = await rateLimiter.consume(pluginId);
+      if (!check.allowed) {
         const err = new Error("Rate limit exceeded for secret resolution");
         err.name = "RateLimitExceededError";
         throw err;

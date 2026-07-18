@@ -60,6 +60,12 @@ export const authConfigSchema = z.object({
   baseUrlMode: z.enum(AUTH_BASE_URL_MODES).default("auto"),
   publicBaseUrl: z.string().url().optional(),
   disableSignUp: z.boolean().default(false),
+  cookieDomain: z.string()
+    .refine(
+      (val) => !val.startsWith("."),
+      { message: "cookieDomain must not start with '.' — use a specific hostname, not a wildcard domain" },
+    )
+    .optional(),
 });
 
 export const storageLocalDiskConfigSchema = z.object({

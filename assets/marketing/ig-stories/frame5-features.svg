@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b1c30"/>
+      <stop offset="100%" stop-color="#081828"/>
+    </linearGradient>
+    <linearGradient id="btnOrange5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff4d1a"/>
+      <stop offset="100%" stop-color="#e62e00"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1920" fill="url(#bg5)"/>
+
+  <!-- Progress dots -->
+  <g transform="translate(500, 60)">
+    <circle cx="0" cy="0" r="6" fill="#64748b"/>
+    <circle cx="30" cy="0" r="6" fill="#64748b"/>
+    <circle cx="60" cy="0" r="6" fill="#ff3e00" opacity="0.3"/>
+    <circle cx="90" cy="0" r="6" fill="#ff3e00"/>
+    <circle cx="120" cy="0" r="6" fill="#ff3e00"/>
+  </g>
+
+  <!-- Label -->
+  <text x="540" y="120" font-family="'IBM Plex Sans', sans-serif" font-weight="600" font-size="15" fill="#ff3e00" text-anchor="middle" letter-spacing="3">ONE PLATFORM</text>
+
+  <!-- Headline -->
+  <text x="540" y="200" font-family="'Space Grotesk', 'Josefin Sans', sans-serif" font-weight="800" font-size="42" fill="#ffffff" text-anchor="middle" letter-spacing="-1">
+    <tspan x="540" dy="0">Everything you need</tspan>
+  </text>
+  <text x="540" y="260" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="42" fill="#ff3e00" text-anchor="middle" letter-spacing="-1">
+    <tspan x="540" dy="0">to trust an identity.</tspan>
+  </text>
+
+  <rect x="440" y="285" width="200" height="3" rx="1.5" fill="#ff3e00" opacity="0.4"/>
+
+  <!-- Feature grid (2x3) -->
+  <g transform="translate(100, 370)">
+    <!-- Row 1 -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="420" height="110" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <rect x="0" y="0" width="4" height="110" rx="2" fill="#ff3e00" opacity="0.6"/>
+      <text x="30" y="42" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#ffffff">DHA ID Check</text>
+      <text x="30" y="72" font-family="'IBM Plex Sans', sans-serif" font-size="15" fill="#64748b">Home Affairs NPR matching</text>
+      <text x="350" y="42" font-family="Arial, sans-serif" font-size="22" opacity="0.4">🆔</text>
+    </g>
+
+    <g transform="translate(460, 0)">
+      <rect x="0" y="0" width="420" height="110" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <rect x="0" y="0" width="4" height="110" rx="2" fill="#00ff88" opacity="0.6"/>
+      <text x="30" y="42" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#ffffff">Liveness Detection</text>
+      <text x="30" y="72" font-family="'IBM Plex Sans', sans-serif" font-size="15" fill="#64748b">Active &amp; passive biometric</text>
+      <text x="350" y="42" font-family="Arial, sans-serif" font-size="22" opacity="0.4">📸</text>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(0, 140)">
+      <rect x="0" y="0" width="420" height="110" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <rect x="0" y="0" width="4" height="110" rx="2" fill="#ff3e00" opacity="0.6"/>
+      <text x="30" y="42" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#ffffff">Document Verification</text>
+      <text x="30" y="72" font-family="'IBM Plex Sans', sans-serif" font-size="15" fill="#64748b">ID books, cards, passports</text>
+      <text x="350" y="42" font-family="Arial, sans-serif" font-size="22" opacity="0.4">📄</text>
+    </g>
+
+    <g transform="translate(460, 140)">
+      <rect x="0" y="0" width="420" height="110" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <rect x="0" y="0" width="4" height="110" rx="2" fill="#00ff88" opacity="0.6"/>
+      <text x="30" y="42" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#ffffff">Sanctions Screening</text>
+      <text x="30" y="72" font-family="'IBM Plex Sans', sans-serif" font-size="15" fill="#64748b">PEP, watchlists, sanctions</text>
+      <text x="350" y="42" font-family="Arial, sans-serif" font-size="22" opacity="0.4">⚖</text>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(0, 280)">
+      <rect x="0" y="0" width="420" height="110" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <rect x="0" y="0" width="4" height="110" rx="2" fill="#ff3e00" opacity="0.6"/>
+      <text x="30" y="42" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#ffffff">Criminal Records</text>
+      <text x="30" y="72" font-family="'IBM Plex Sans', sans-serif" font-size="15" fill="#64748b">SAPS &amp; AFISwitch checks</text>
+      <text x="350" y="42" font-family="Arial, sans-serif" font-size="22" opacity="0.4">🔍</text>
+    </g>
+
+    <g transform="translate(460, 280)">
+      <rect x="0" y="0" width="420" height="110" rx="16" fill="#ffffff" opacity="0.04" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+      <rect x="0" y="0" width="4" height="110" rx="2" fill="#00ff88" opacity="0.6"/>
+      <text x="30" y="42" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="20" fill="#ffffff">Credit Bureau</text>
+      <text x="30" y="72" font-family="'IBM Plex Sans', sans-serif" font-size="15" fill="#64748b">Credit history &amp; affordability</text>
+      <text x="350" y="42" font-family="Arial, sans-serif" font-size="22" opacity="0.4">💳</text>
+    </g>
+  </g>
+
+  <!-- Bottom message -->
+  <text x="540" y="870" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28" fill="#ffffff" text-anchor="middle">
+    <tspan x="540" dy="0">One platform.</tspan>
+  </text>
+  <text x="540" y="920" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28" fill="#ff3e00" text-anchor="middle">
+    <tspan x="540" dy="0">One API. Infinite trust.</tspan>
+  </text>
+
+  <!-- CTA Button -->
+  <g transform="translate(290, 1020)">
+    <rect x="0" y="0" width="500" height="72" rx="14" fill="url(#btnOrange5)"/>
+    <text x="250" y="44" font-family="'Space Grotesk', 'Josefin Sans', sans-serif" font-weight="700" font-size="22" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">Start verifying →</text>
+  </g>
+
+  <!-- Link -->
+  <text x="540" y="1150" font-family="'IBM Plex Sans', sans-serif" font-weight="600" font-size="18" fill="#ff3e00" text-anchor="middle">seeid.co.za</text>
+
+  <text x="540" y="1880" font-family="'IBM Plex Sans', sans-serif" font-weight="500" font-size="14" fill="#64748b" text-anchor="middle">seeID · DHA-powered · POPIA compliant · Bank-grade</text>
+</svg>

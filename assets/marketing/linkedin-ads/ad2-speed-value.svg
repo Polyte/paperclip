@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="627" viewBox="0 0 1200 627">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1c30"/>
+      <stop offset="100%" stop-color="#0a1830"/>
+    </linearGradient>
+    <radialGradient id="speedGlow" cx="0.5" cy="0.45" r="0.6">
+      <stop offset="0%" stop-color="#00ff88" stop-opacity="0.12"/>
+      <stop offset="60%" stop-color="#00ff88" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#00ff88" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orangeGlow" cx="0.85" cy="0.2" r="0.35">
+      <stop offset="0%" stop-color="#ff3e00" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ff3e00" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="btnGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#00cc6a"/>
+    </linearGradient>
+    <linearGradient id="cardGrad2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+    <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1" fill="#ffffff" opacity="0.03"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="627" fill="url(#bg2)"/>
+  <rect width="1200" height="627" fill="url(#dots)"/>
+  <rect width="1200" height="627" fill="url(#speedGlow)"/>
+  <rect width="1200" height="627" fill="url(#orangeGlow)"/>
+
+  <!-- Speed lines (left decoration) -->
+  <g opacity="0.08">
+    <line x1="0" y1="120" x2="350" y2="120" stroke="#00ff88" stroke-width="1.5"/>
+    <line x1="0" y1="150" x2="450" y2="150" stroke="#00ff88" stroke-width="1"/>
+    <line x1="0" y1="180" x2="280" y2="180" stroke="#00ff88" stroke-width="2"/>
+    <line x1="0" y1="210" x2="500" y2="210" stroke="#00ff88" stroke-width="1"/>
+    <line x1="0" y1="250" x2="320" y2="250" stroke="#00ff88" stroke-width="1.5"/>
+    <!-- Pulse dots at line ends -->
+    <circle cx="350" cy="120" r="3" fill="#00ff88" opacity="0.5"/>
+    <circle cx="450" cy="150" r="2" fill="#00ff88" opacity="0.4"/>
+    <circle cx="500" cy="210" r="3" fill="#00ff88" opacity="0.5"/>
+  </g>
+
+  <!-- Logo area -->
+  <g transform="translate(64, 48)">
+    <svg width="42" height="50" viewBox="0 0 107 128">
+      <path d="M94.157 22.819c-10.4-14.885-30.94-19.297-45.792-9.835L22.282 29.608A29.92 29.92 0 0 0 8.764 49.65a31.5 31.5 0 0 0 3.108 20.231 30 30 0 0 0-4.477 11.183 31.9 31.9 0 0 0 5.448 24.116c10.402 14.887 30.942 19.297 45.791 9.835l26.083-16.624A29.92 29.92 0 0 0 98.235 78.35a31.53 31.53 0 0 0-3.105-20.232 30 30 0 0 0 4.474-11.182 31.88 31.88 0 0 0-5.447-24.116" fill="#ff3e00"/>
+      <path d="M45.817 106.582a20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.503 18 18 0 0 1 .624-2.435l.49-1.498 1.337.981a33.6 33.6 0 0 0 10.203 5.098l.97.294-.09.968a5.85 5.85 0 0 0 1.052 3.878 6.24 6.24 0 0 0 6.695 2.485 5.8 5.8 0 0 0 1.603-.704L69.27 76.28a5.43 5.43 0 0 0 2.45-3.631 5.8 5.8 0 0 0-.987-4.371 6.24 6.24 0 0 0-6.698-2.487 5.7 5.7 0 0 0-1.6.704l-9.953 6.345a19 19 0 0 1-5.296 2.326 20.72 20.72 0 0 1-22.237-8.243 19.17 19.17 0 0 1-3.277-14.502 17.99 17.99 0 0 1 8.13-12.052l26.081-16.623a19 19 0 0 1 5.3-2.329 20.72 20.72 0 0 1 22.237 8.243 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-.624 2.435l-.49 1.498-1.337-.98a33.6 33.6 0 0 0-10.203-5.1l-.97-.294.09-.968a5.86 5.86 0 0 0-1.052-3.878 6.24 6.24 0 0 0-6.696-2.485 5.8 5.8 0 0 0-1.602.704L37.73 51.72a5.42 5.42 0 0 0-2.449 3.63 5.79 5.79 0 0 0 .986 4.372 6.24 6.24 0 0 0 6.698 2.486 5.8 5.8 0 0 0 1.602-.704l9.952-6.342a19 19 0 0 1 5.295-2.328 20.72 20.72 0 0 1 22.237 8.242 19.17 19.17 0 0 1 3.277 14.503 18 18 0 0 1-8.13 12.053l-26.081 16.622a19 19 0 0 1-5.3 2.328" fill="#ffffff"/>
+    </svg>
+    <text x="52" y="42" font-family="'Space Grotesk', 'Josefin Sans', system-ui, sans-serif" font-weight="700" font-size="28" fill="#ffffff" letter-spacing="-0.5">see<text fill="#ff3e00">ID</text></text>
+  </g>
+
+  <!-- Large "2s" hero number (ghost background) -->
+  <text x="100" y="440" font-family="'Space Grotesk', 'Josefin Sans', sans-serif" font-weight="900" font-size="280" fill="#00ff88" opacity="0.06" letter-spacing="-15">2s</text>
+
+  <!-- Right content area -->
+  <g transform="translate(580, 0)">
+    <!-- Eyebrow -->
+    <text x="0" y="140" font-family="'IBM Plex Sans', 'Helvetica Neue', sans-serif" font-weight="600" font-size="13" fill="#00ff88" letter-spacing="2">SPEED &amp; PERFORMANCE</text>
+
+    <!-- Headline -->
+    <text font-family="'Space Grotesk', 'Josefin Sans', sans-serif" font-weight="800" font-size="54" fill="#ffffff" letter-spacing="-1.5">
+      <tspan x="0" y="205">Verify any</tspan>
+      <tspan x="0" y="270">SA ID in</tspan>
+    </text>
+    <text font-family="'Space Grotesk', 'Josefin Sans', sans-serif" font-weight="800" font-size="60" fill="#00ff88" letter-spacing="-1.5">
+      <tspan x="0" y="340">2 seconds.</tspan>
+    </text>
+
+    <!-- Accent underline -->
+    <rect x="0" y="358" width="200" height="4" rx="2" fill="#00ff88"/>
+
+    <!-- Subheadline -->
+    <text font-family="'IBM Plex Sans', 'Helvetica Neue', sans-serif" font-size="19" fill="#94a3b8" letter-spacing="0">
+      <tspan x="0" y="405">Direct DHA access. One API call.</tspan>
+      <tspan x="0" y="435">Instant, audit-ready results. No integration headaches.</tspan>
+    </text>
+
+    <!-- Performance stats -->
+    <g font-family="'Space Grotesk', sans-serif" transform="translate(0, 475)">
+      <!-- Stat card -->
+      <rect x="0" y="0" width="540" height="64" rx="10" fill="url(#cardGrad2)" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+
+      <!-- Stat 1 -->
+      <text x="70" y="28" font-weight="800" font-size="26" fill="#00ff88" text-anchor="middle">&lt;3s</text>
+      <text x="70" y="48" font-family="'IBM Plex Sans', sans-serif" font-weight="500" font-size="11" fill="#64748b" text-anchor="middle">Avg response</text>
+
+      <!-- Divider -->
+      <line x1="140" y1="12" x2="140" y2="52" stroke="#ffffff" stroke-opacity="0.08"/>
+
+      <!-- Stat 2 -->
+      <text x="210" y="28" font-weight="800" font-size="26" fill="#00ff88" text-anchor="middle">99.9%</text>
+      <text x="210" y="48" font-family="'IBM Plex Sans', sans-serif" font-weight="500" font-size="11" fill="#64748b" text-anchor="middle">Uptime SLA</text>
+
+      <!-- Divider -->
+      <line x1="280" y1="12" x2="280" y2="52" stroke="#ffffff" stroke-opacity="0.08"/>
+
+      <!-- Stat 3 -->
+      <text x="370" y="28" font-weight="800" font-size="26" fill="#00ff88" text-anchor="middle">DHA</text>
+      <text x="370" y="48" font-family="'IBM Plex Sans', sans-serif" font-weight="500" font-size="11" fill="#64748b" text-anchor="middle">Direct NPR</text>
+
+      <!-- Stat 4 (pulse indicator) -->
+      <text x="470" y="28" font-weight="800" font-size="26" fill="#00ff88" text-anchor="middle">●</text>
+      <text x="470" y="48" font-family="'IBM Plex Sans', sans-serif" font-weight="500" font-size="11" fill="#64748b" text-anchor="middle">Live</text>
+    </g>
+
+    <!-- CTA Button -->
+    <g transform="translate(0, 565)">
+      <rect x="0" y="0" width="220" height="50" rx="8" fill="url(#btnGreen)"/>
+      <text x="110" y="32" font-family="'Space Grotesk', 'Josefin Sans', sans-serif" font-weight="700" font-size="16" fill="#0b1c30" text-anchor="middle" letter-spacing="0.5">Start free trial →</text>
+    </g>
+  </g>
+</svg>

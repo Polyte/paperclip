@@ -4,11 +4,16 @@ import {
   PLUGIN_SECRET_REFS_DISABLED_MESSAGE,
 } from "../services/plugin-secrets-handler.js";
 
+function noopRateLimiter() {
+  return { consume: async () => ({ allowed: true }) };
+}
+
 describe("createPluginSecretsHandler", () => {
   it("fails closed for plugin secret resolution until company scoping lands", async () => {
     const handler = createPluginSecretsHandler({
       db: {} as never,
       pluginId: "11111111-1111-4111-8111-111111111111",
+      rateLimiter: noopRateLimiter(),
     });
 
     await expect(
@@ -20,6 +25,7 @@ describe("createPluginSecretsHandler", () => {
     const handler = createPluginSecretsHandler({
       db: {} as never,
       pluginId: "11111111-1111-4111-8111-111111111111",
+      rateLimiter: noopRateLimiter(),
     });
 
     await expect(

@@ -659,6 +659,27 @@
       "when": 1780040470886,
       "tag": "0093_giant_green_goblin",
       "breakpoints": true
+    },
+    {
+      "idx": 94,
+      "version": "7",
+      "when": 1784304000000,
+      "tag": "0094_sleek_rate_limit",
+      "breakpoints": true
+    },
+    {
+      "idx": 95,
+      "version": "7",
+      "when": 1784707200000,
+      "tag": "0095_biometric_selfies",
+      "breakpoints": true
+    },
+    {
+      "idx": 96,
+      "version": "7",
+      "when": 1784793600000,
+      "tag": "0096_activity_log_action_created_idx",
+      "breakpoints": true
     }
   ]
 }
