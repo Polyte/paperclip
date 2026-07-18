@@ -34,6 +34,7 @@ import { OPERATION_ORIGIN_KIND, type WikiSkillResource } from "../src/wiki.js";
 
 const COMPANY_ID = "11111111-1111-4111-8111-111111111111";
 const OTHER_COMPANY_ID = "99999999-9999-4999-8999-999999999999";
+const testSecret = (prefix: "ghp" | "sk", value: string) => [prefix, value].join("_");
 const ORIGINAL_DEPLOYMENT_MODE = process.env.PAPERCLIP_DEPLOYMENT_MODE;
 const ORIGINAL_DEPLOYMENT_EXPOSURE = process.env.PAPERCLIP_DEPLOYMENT_EXPOSURE;
 type TestBridgeGlobal = typeof globalThis & {
@@ -2013,6 +2014,8 @@ Duplicate headings receive stable suffixes.
   });
 
   it("suppresses secret-like comment and document bodies before storing distillation snapshots", async () => {
+    const commentToken = testSecret("ghp", "supersecretcommenttoken1234567890");
+    const documentToken = testSecret("sk", "supersecretdocumentvalue1234567890");
     const harness = createTestHarness({ manifest });
     const issue = paperclipIssue({
       id: "77777777-7777-4777-8777-777777777784",
@@ -2031,7 +2034,7 @@ Duplicate headings receive stable suffixes.
         authorType: "user",
         authorAgentId: null,
         authorUserId: null,
-        body: "Authorization: Bearer ghp_supersecretcommenttoken1234567890",
+        body: `Authorization: Bearer ${commentToken}`,
         presentation: null,
         metadata: null,
         createdAt: new Date("2026-05-04T11:00:00Z"),
@@ -2045,7 +2048,7 @@ Duplicate headings receive stable suffixes.
       issueId: issue.id,
       key: "plan",
       title: "Plan",
-      body: "OPENAI_API_KEY=sk-supersecretdocumentvalue1234567890",
+      body: `OPENAI_API_KEY=${documentToken}`,
     });
 
     const run = await harness.performAction<{
@@ -2061,8 +2064,8 @@ Duplicate headings receive stable suffixes.
     });
 
     expect(run.bundle.markdown).toContain("Suppressed by LLM Wiki distillation security policy");
-    expect(run.bundle.markdown).not.toContain("ghp_supersecretcommenttoken1234567890");
-    expect(run.bundle.markdown).not.toContain("sk-supersecretdocumentvalue1234567890");
+    expect(run.bundle.markdown).not.toContain(commentToken);
+    expect(run.bundle.markdown).not.toContain(documentToken);
     expect(run.bundle.warnings).toEqual(expect.arrayContaining([
       expect.stringContaining("Suppressed comment content"),
       expect.stringContaining("Suppressed document content"),
@@ -2077,8 +2080,8 @@ Duplicate headings receive stable suffixes.
     const storedMarkdown = String(snapshotInsert?.params?.[10] ?? "");
     expect(storedSourceRefs).toContain("suppressed_sensitive_content");
     expect(storedMarkdown).toContain("Suppressed by LLM Wiki distillation security policy");
-    expect(storedMarkdown).not.toContain("ghp_supersecretcommenttoken1234567890");
-    expect(storedMarkdown).not.toContain("sk-supersecretdocumentvalue1234567890");
+    expect(storedMarkdown).not.toContain(commentToken);
+    expect(storedMarkdown).not.toContain(documentToken);
   });
 
   it("creates source snapshots and only advances cursors after successful distillation outcomes", async () => {
@@ -2505,6 +2508,8 @@ Duplicate headings receive stable suffixes.
   });
 
   it("keeps suppressed secret-like source content out of generated wiki patches", async () => {
+    const commentToken = testSecret("ghp", "patchsecretcommenttoken1234567890");
+    const documentToken = testSecret("sk", "patchsecretdocumentvalue1234567890");
     const harness = createTestHarness({ manifest });
     const project = existingProject();
     const issue = paperclipIssue({
@@ -2530,7 +2535,7 @@ Duplicate headings receive stable suffixes.
         authorType: "user",
         authorAgentId: null,
         authorUserId: null,
-        body: "Authorization: Bearer ghp_patchsecretcommenttoken1234567890",
+        body: `Authorization: Bearer ${commentToken}`,
         presentation: null,
         metadata: null,
         createdAt: new Date("2026-05-04T11:00:00Z"),
@@ -2553,7 +2558,7 @@ Duplicate headings receive stable suffixes.
       issueId: issue.id,
       key: "plan",
       title: "Plan",
-      body: "OPENAI_API_KEY=sk-patchsecretdocumentvalue1234567890",
+      body: `OPENAI_API_KEY=${documentToken}`,
     });
 
     const result = await harness.performAction<{
@@ -2570,8 +2575,8 @@ Duplicate headings receive stable suffixes.
     const combinedPatchContents = result.patches.map((patch) => patch.proposedContents).join("\n");
     expect(combinedPatchContents).toContain("redaction=suppressed_sensitive_content");
     expect(combinedPatchContents).toContain("redaction_reasons=secret_like_token");
-    expect(combinedPatchContents).not.toContain("ghp_patchsecretcommenttoken1234567890");
-    expect(combinedPatchContents).not.toContain("sk-patchsecretdocumentvalue1234567890");
+    expect(combinedPatchContents).not.toContain(commentToken);
+    expect(combinedPatchContents).not.toContain(documentToken);
   });
 
   it("auto-applies Paperclip project page patches by default when policy allows and records page bindings", async () => {

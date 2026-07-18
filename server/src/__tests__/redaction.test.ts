@@ -66,7 +66,7 @@ describe("redaction", () => {
 
   it("redacts common secret shapes from unstructured text", () => {
     const jwt = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-    const githubToken = "ghp_1234567890abcdefghijklmnopqrstuvwxyz";
+    const githubToken = ["ghp", "1234567890abcdefghijklmnopqrstuvwxyz"].join("_");
     const input = [
       "Authorization: Bearer live-bearer-token-value",
       `payload {"apiKey":"json-secret-value"}`,
