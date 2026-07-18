@@ -1,0 +1,10 @@
+{
+  "_init": {
+    "features": [
+      "database",
+      "auth"
+    ]
+  },
+  "orgId": "org-damp-brook-81705179",
+  "projectId": "crimson-truth-89026992"
+}
