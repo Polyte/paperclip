@@ -1,4 +1,5 @@
 export type { Company } from "./company.js";
+export type * from "./ovg.js";
 export type {
   Environment,
   EnvironmentLease,

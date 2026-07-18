@@ -84,3 +84,6 @@ export { pluginJobs, pluginJobRuns } from "./plugin_jobs.js";
 export { pluginWebhookDeliveries } from "./plugin_webhooks.js";
 export { pluginLogs } from "./plugin_logs.js";
 export { rateLimitEntries } from "./rate_limit_entries.js";
+export { ovgDataSources } from "./ovg_data_sources.js";
+export { ovgPropertyListings } from "./ovg_property_listings.js";
+export { ovgIngestionRuns } from "./ovg_ingestion_runs.js";
