@@ -1,5 +1,14 @@
 export { agentAdapterTypeSchema, optionalAgentAdapterTypeSchema } from "./adapter-type.js";
 export {
+  biometricSelfieStatusSchema,
+  uploadBiometricSelfieSchema,
+  biometricSelfieResponseSchema,
+  biometricSelfieDataResponseSchema,
+  type UploadBiometricSelfie,
+  type BiometricSelfieResponse,
+  type BiometricSelfieDataResponse,
+} from "./validators/biometric-selfie.js";
+export {
   COMPANY_STATUSES,
   DEFAULT_COMPANY_ATTACHMENT_MAX_BYTES,
   MAX_COMPANY_ATTACHMENT_MAX_BYTES,
